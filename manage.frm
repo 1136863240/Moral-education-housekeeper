@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form manage 
-   Caption         =   "德育分管理器v0.1 - 管理"
+   Caption         =   "德育分管理器v0.2 - 管理"
    ClientHeight    =   3660
    ClientLeft      =   60
    ClientTop       =   450
@@ -284,7 +284,7 @@ Public isSave
 
 Private Sub btn_next_Click()
 'check is changed
-    If Val(Page.Text) = 0 Then
+    If Val(page.Text) = 0 Then
         sql = "INSERT INTO " & table_name & " VALUES(" & (db_count("row").Value + 1) & "," & _
             (db_count("row").Value + 1) & ",'',75)"
         db_conn.Execute sql
@@ -299,16 +299,16 @@ Private Sub btn_next_Click()
         down.Enabled = True
         up.Enabled = True
         change_value.Text = "0"
-        Page.Text = "1"
+        page.Text = "1"
         for_count.Caption = "/ 1"
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
         db_record = db_conn.Execute(sql)
         id.Text = db_record("id").Value
         strName.Text = Trim(db_record("name").Value)
         moral_score.Text = db_record("moral_score").Value
         change_value.Text = "0"
-    ElseIf Val(Page.Text) = Val(Mid(for_count.Caption, 3)) Then
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+    ElseIf Val(page.Text) = Val(Mid(for_count.Caption, 3)) Then
+        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
         db_record = db_conn.Execute(sql)
         If id.Text <> db_record("id").Value Or _
             strName.Text <> Trim(db_record("name").Value) Or _
@@ -318,7 +318,7 @@ Private Sub btn_next_Click()
                 "向下一条记录", vbYesNo + vbExclamation, "温馨提示")
             If isSave = vbYes Then
                 sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                    "', moral_score = " & moral_score.Text & " WHERE index = " & Page.Text
+                    "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
                 db_conn.Execute (sql)
             Else
                 id.Text = db_record("id").Value
@@ -339,21 +339,21 @@ Private Sub btn_next_Click()
             MsgBox "学号、姓名或德育分不能为空", vbOKOnly + vbExclamation, "提示"
             Exit Sub
         End If
-        Page.Text = Val(Page.Text) + 1
-        for_count.Caption = "/ " & Page.Text
-        sql = "INSERT INTO " & table_name & " VALUES(" & Page.Text & _
-            "," & Page.Text & ",'',75)"
+        page.Text = Val(page.Text) + 1
+        for_count.Caption = "/ " & page.Text
+        sql = "INSERT INTO " & table_name & " VALUES(" & page.Text & _
+            "," & page.Text & ",'',75)"
         db_conn.Execute sql
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
         db_record = db_conn.Execute(sql)
         id.Text = db_record("id").Value
         strName.Text = Trim(db_record("name").Value)
         moral_score.Text = db_record("moral_score").Value
         change_value.Text = "0"
-        If Val(Page.Text) > 0 Then
+        If Val(page.Text) > 0 Then
             btn_previous.Enabled = True
         End If
-    ElseIf Val(Page.Text) = Val(Mid(for_count.Caption, 3)) - 1 Then
+    ElseIf Val(page.Text) = Val(Mid(for_count.Caption, 3)) - 1 Then
         If id.Text = "" Or _
             Trim(strName.Text) = "" Or _
             moral_score.Text = "" Then
@@ -369,7 +369,7 @@ Private Sub btn_next_Click()
                     "向下一条记录", vbYesNo + vbExclamation, "温馨提示")
                 If isSave = vbYes Then
                     sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                        "', moral_score = " & moral_score.Text & " WHERE index = " & Page.Text
+                        "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
                     db_conn.Execute (sql)
                 Else
                     id.Text = db_record("id").Value
@@ -389,8 +389,8 @@ Private Sub btn_next_Click()
         btn_next.Caption = "添加"
         sql = "SELECT COUNT(*) AS row FROM " & table_name
         db_count = db_conn.Execute(sql)
-        Page.Text = Val(Page.Text) + 1
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+        page.Text = Val(page.Text) + 1
+        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
         db_record = db_conn.Execute(sql)
         id.Text = db_record("id").Value
         strName.Text = Trim(db_record("name").Value)
@@ -404,7 +404,7 @@ Private Sub btn_next_Click()
             Exit Sub
         Else
             'first check note
-            sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+            sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
             db_record = db_conn.Execute(sql)
             'when database's count is not empty
             If db_count("row").Value > 0 Then
@@ -416,7 +416,7 @@ Private Sub btn_next_Click()
                         "向下一条记录", vbYesNo + vbExclamation, "温馨提示")
                     If isSave = vbYes Then
                         sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                            "', moral_score = " & moral_score.Text & " WHERE index = " & Page.Text
+                            "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
                         db_conn.Execute (sql)
                     Else
                         id.Text = db_record("id").Value
@@ -432,16 +432,16 @@ Private Sub btn_next_Click()
                     End If
                     'finish check
                     'select next
-                    Page.Text = Val(Page.Text) + 1
-                    sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+                    page.Text = Val(page.Text) + 1
+                    sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
                     db_record = db_conn.Execute(sql)
                     id.Text = db_record("id").Value
                     strName.Text = Trim(db_record("name").Value)
                     moral_score.Text = db_record("moral_score").Value
                     change_value.Text = "0"
                 Else
-                    Page.Text = Val(Page.Text) + 1
-                    sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+                    page.Text = Val(page.Text) + 1
+                    sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
                     db_record = db_conn.Execute(sql)
                     id.Text = db_record("id").Value
                     strName.Text = Trim(db_record("name").Value)
@@ -451,8 +451,8 @@ Private Sub btn_next_Click()
                 End If
             'or ...
             Else
-                Page.Text = Val(Page.Text) + 1
-                sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+                page.Text = Val(page.Text) + 1
+                sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
                 db_record = db_conn.Execute(sql)
                 id.Text = db_record("id").Value
                 strName.Text = Trim(db_record("name").Value)
@@ -477,7 +477,7 @@ End Sub
 
 Private Sub btn_previous_Click()
     'check is changed
-    sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+    sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
     db_record = db_conn.Execute(sql)
     If id.Text <> db_record("id").Value Or _
         Trim(strName.Text) <> Trim(db_record("name").Value) Or _
@@ -487,13 +487,13 @@ Private Sub btn_previous_Click()
             "向上一条记录", vbYesNo + vbExclamation, "温馨提示")
         If isSave = vbYes Then
             sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                "', moral_score = " & moral_score.Text & " WHERE index = " & Page.Text
+                "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
             db_conn.Execute sql
         End If
     End If
     'go into previous note
-    If Val(Page.Text) = 2 Then
-        Page.Text = Val(Page.Text) - 1
+    If Val(page.Text) = 2 Then
+        page.Text = Val(page.Text) - 1
         btn_previous.Enabled = False
         sql = "SELECT * FROM " & table_name & " WHERE index = 1"
         db_record = db_conn.Execute(sql)
@@ -501,9 +501,9 @@ Private Sub btn_previous_Click()
         strName.Text = Trim(db_record("name").Value)
         moral_score.Text = db_record("moral_score").Value
         change_value.Text = "0"
-    ElseIf Val(Page.Text) > 2 Then
-        Page.Text = Val(Page.Text) - 1
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+    ElseIf Val(page.Text) > 2 Then
+        page.Text = Val(page.Text) - 1
+        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
         db_record = db_conn.Execute(sql)
         id.Text = db_record("id").Value
         strName.Text = Trim(db_record("name").Value)
@@ -518,7 +518,7 @@ Private Sub btn_return_Click()
     isReturn = MsgBox("确定要还原记录吗？" & vbCrLf & Chr(34) & "是" & Chr(34) & _
         "为还原记录，" & Chr(34) & "否" & Chr(34) & "为不还原", vbYesNo + vbExclamation, "温馨提示")
     If isReturn = vbYes Then
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
         db_record = db_conn.Execute(sql)
         If db_count("row").Value > 0 Then
             id.Text = db_record("id").Value
@@ -541,17 +541,17 @@ Private Sub btn_save_Click()
     End If
     sql = "SELECT COUNT(*) AS row FROM " & table_name
     db_count = db_conn.Execute(sql)
-    If Val(db_count("row").Value) > 0 And Val(db_count("row").Value) >= Val(Page.Text) Then
+    If Val(db_count("row").Value) > 0 And Val(db_count("row").Value) >= Val(page.Text) Then
         sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-            "', moral_score = " & moral_score.Text & " WHERE index = " & Page.Text
+            "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
         db_conn.Execute (sql)
     Else
-        sql = "INSERT INTO " & table_name & " VALUES(" & Page.Text & "," & id.Text & ",'" & _
+        sql = "INSERT INTO " & table_name & " VALUES(" & page.Text & "," & id.Text & ",'" & _
             strName.Text & "'," & moral_score.Text & ")"
         MsgBox sql
         db_conn.Execute (sql)
     End If
-    sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+    sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
     db_record = db_conn.Execute(sql)
     If db_record("id").Value = id.Text And _
         Trim(db_record("name").Value) = Trim(strName.Text) And _
@@ -603,7 +603,7 @@ Private Sub down_Click()
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-    If Val(Page.Text) > 0 Then
+    If Val(page.Text) > 0 Then
         sql = "SELECT * FROM " & table_name & " WHERE index = " & Mid(for_count.Caption, 3)
         db_record = db_conn.Execute(sql)
         If db_record("id").Value = "" Or _
@@ -617,7 +617,7 @@ Private Sub Form_Unload(Cancel As Integer)
         If id.Text = "" Or _
             strName.Text = "" Or _
             moral_score.Text = "" Then
-            sql = "DELETE FROM " & table_name & " WHERE index = " & Page.Text
+            sql = "DELETE FROM " & table_name & " WHERE index = " & page.Text
             db_conn.Execute sql
             db_conn.Close
             End
@@ -631,7 +631,7 @@ Private Sub Form_Unload(Cancel As Integer)
                     vbExclamation, "温馨提示")
                 If isSave = vbYes Then
                     sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                        "', moral_score = " & moral_score.Text & " WHERE index = " & Page.Text
+                        "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
                     db_conn.Execute sql
                 End If
             End If
@@ -647,6 +647,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub Form_Load()
+    Me.Caption = "德育分管理器beta - " & table_name & "管理"
     On Error GoTo OperatorError
     Set db_conn = New ADODB.Connection
     db_conn.Open db_drive, "Admin"
@@ -656,13 +657,13 @@ Private Sub Form_Load()
     db_count = db_conn.Execute(sql)
     for_count.Caption = "/ " & db_count("row").Value
     If Val(db_count("row").Value) > 0 Then
-        Page.Text = "1"
-        If Page.Text = Mid(for_count.Caption, 3) Then
+        page.Text = "1"
+        If page.Text = Mid(for_count.Caption, 3) Then
             btn_next.Caption = "添加"
-        ElseIf Val(Page.Text) > Val(Mid(for_count.Caption, 3)) Then
+        ElseIf Val(page.Text) > Val(Mid(for_count.Caption, 3)) Then
             btn_next.Caption = "下一条"
         End If
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & Page.Text
+        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
         db_record = db_conn.Execute(sql)
         id.Text = db_record("id").Value
         strName.Text = Trim(db_record("name").Value)
@@ -681,7 +682,7 @@ Private Sub Form_Load()
             grade.Caption = "优秀"
         End If
     Else
-        Page.Text = "0"
+        page.Text = "0"
         id.Enabled = False
         strName.Enabled = False
         moral_score.Enabled = False
@@ -724,6 +725,23 @@ Private Sub moral_score_Change()
             End If
         End If
     Next
+End Sub
+
+Private Sub page_KeyPress(KeyAscii As Integer)
+    If KeyAscii = 13 Then
+        sql = "SELECT COUNT(*) AS row FROM " & table_name & " WHERE index = " & page.Text
+        db_record = db_conn.Execute(sql)
+        If Val(db_record("row").Value) = 0 Then
+            MsgBox "无相关记录", vbOKOnly + vbExclamation, "提示"
+        Else
+            sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
+            db_record = db_conn.Execute(sql)
+            id.Text = db_record("id").Value
+            strName.Text = Trim(db_record("name").Value)
+            moral_score.Text = db_record("moral_score").Value
+            change_value.Text = "0"
+        End If
+    End If
 End Sub
 
 Private Sub up_Click()

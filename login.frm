@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form login 
-   Caption         =   "德育分管理器v0.1 - 请输入班级"
+   Caption         =   "德育分管理器v0.2 - 请输入班级"
    ClientHeight    =   2370
    ClientLeft      =   60
    ClientTop       =   450
@@ -10,6 +10,24 @@ Begin VB.Form login
    ScaleHeight     =   2370
    ScaleWidth      =   4740
    StartUpPosition =   2  '屏幕中心
+   Begin VB.ComboBox Class_Grade 
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   420
+      ItemData        =   "login.frx":0000
+      Left            =   1635
+      List            =   "login.frx":0002
+      TabIndex        =   3
+      Top             =   435
+      Width           =   2415
+   End
    Begin VB.CommandButton Command2 
       Caption         =   "退出"
       BeginProperty Font 
@@ -23,12 +41,13 @@ Begin VB.Form login
       EndProperty
       Height          =   495
       Left            =   2603
-      TabIndex        =   3
+      TabIndex        =   2
       Top             =   1448
       Width           =   1455
    End
    Begin VB.CommandButton Command1 
       Caption         =   "确定"
+      Default         =   -1  'True
       BeginProperty Font 
          Name            =   "宋体"
          Size            =   15
@@ -40,25 +59,9 @@ Begin VB.Form login
       EndProperty
       Height          =   495
       Left            =   683
-      TabIndex        =   2
+      TabIndex        =   1
       Top             =   1448
       Width           =   1455
-   End
-   Begin VB.TextBox Class_Grade 
-      BeginProperty Font 
-         Name            =   "宋体"
-         Size            =   15
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   495
-      Left            =   1639
-      TabIndex        =   1
-      Top             =   428
-      Width           =   2415
    End
    Begin VB.Label Label1 
       Caption         =   "班级"
@@ -84,7 +87,6 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Command1_Click()
-    db_name = App.Path
     For strIndex = 1 To Len(Class_Grade.Text)
         If Mid(Class_Grade.Text, strIndex, 1) = " " Then
             MsgBox "班级名称中不能出现空格，请检查后重试", vbOKOnly + vbExclamation, "提示"
@@ -97,19 +99,6 @@ Private Sub Command1_Click()
     Else
         'create a drive string
         db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source='"
-        If Right(db_name, 1) <> "\" Then 'if it is child directory
-            If Dir(db_name & "\db", vbDirectory) = "" Then 'if \db directory is not exist
-                'create a directory, name is \db
-                MkDir (db_name & "\db")
-            End If
-            db_name = db_name & "\db\"
-        Else
-            If Dir(db_name & "db", vbDirectory) = "" Then
-                'same as
-                MkDir (db_name & "db")
-            End If
-            db_name = db_name & "db\"
-        End If
         db_drive = db_drive & db_name & Class_Grade.Text & ".mdb'"
         'if no exist database and table
         'create them
@@ -138,6 +127,39 @@ DatabaseError:
 End Sub
 
 Private Sub Command2_Click()
-End
+    End
 End Sub
 
+Private Sub Form_Load()
+    On Error GoTo Error
+    db_name = App.Path
+    If Right(db_name, 1) <> "\" Then 'if it is child directory
+        If Dir(db_name & "\db", vbDirectory) = "" Then 'if \db directory is not exist
+            'create a directory, name is \db
+            MkDir db_name & "\db"
+        End If
+        db_name = db_name & "\db\"
+    Else
+        If Dir(db_name & "db", vbDirectory) = "" Then
+            'same as
+            MkDir db_name & "db"
+        End If
+        db_name = db_name & "db\"
+    End If
+    Dim file
+    Set found_file = CreateObject("Scripting.FileSystemObject")
+    Set folder = found_file.GetFolder(db_name)
+    Set file_count = folder.Files
+    Class_Grade.Clear
+    For Each file In file_count
+        Dim file_name
+        file_name = Left(file.Name, InStr(1, file.Name, ".mdb") - 1)
+        Class_Grade.AddItem file_name, Class_Grade.ListCount
+    Next
+    If Class_Grade.ListCount > 0 Then
+        Class_Grade.ListIndex = 0
+    End If
+    Exit Sub
+Error:
+    MsgBox "出现错误，错误信息：" & Err.Description, vbOKOnly + vbCritical, "错误"
+End Sub
