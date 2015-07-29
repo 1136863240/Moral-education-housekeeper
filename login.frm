@@ -1,15 +1,34 @@
 VERSION 5.00
 Begin VB.Form login 
-   Caption         =   "德育分管理器v0.2 - 请输入班级"
-   ClientHeight    =   2370
-   ClientLeft      =   60
-   ClientTop       =   450
+   BorderStyle     =   1  'Fixed Single
+   Caption         =   "德育管家v0.3 - 请输入班级"
+   ClientHeight    =   2970
+   ClientLeft      =   45
+   ClientTop       =   435
    ClientWidth     =   4740
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   ScaleHeight     =   2370
+   ScaleHeight     =   2970
    ScaleWidth      =   4740
    StartUpPosition =   2  '屏幕中心
+   Begin VB.TextBox Password 
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   420
+      IMEMode         =   3  'DISABLE
+      Left            =   1635
+      PasswordChar    =   "*"
+      TabIndex        =   1
+      Top             =   1237
+      Width           =   2415
+   End
    Begin VB.ComboBox Class_Grade 
       BeginProperty Font 
          Name            =   "宋体"
@@ -24,7 +43,7 @@ Begin VB.Form login
       ItemData        =   "login.frx":0000
       Left            =   1635
       List            =   "login.frx":0002
-      TabIndex        =   3
+      TabIndex        =   0
       Top             =   435
       Width           =   2415
    End
@@ -41,8 +60,8 @@ Begin VB.Form login
       EndProperty
       Height          =   495
       Left            =   2603
-      TabIndex        =   2
-      Top             =   1448
+      TabIndex        =   3
+      Top             =   2055
       Width           =   1455
    End
    Begin VB.CommandButton Command1 
@@ -59,9 +78,26 @@ Begin VB.Form login
       EndProperty
       Height          =   495
       Left            =   683
-      TabIndex        =   1
-      Top             =   1448
+      TabIndex        =   2
+      Top             =   2055
       Width           =   1455
+   End
+   Begin VB.Label Label2 
+      Caption         =   "密码"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   686
+      TabIndex        =   5
+      Top             =   1260
+      Width           =   615
    End
    Begin VB.Label Label1 
       Caption         =   "班级"
@@ -76,7 +112,7 @@ Begin VB.Form login
       EndProperty
       Height          =   375
       Left            =   686
-      TabIndex        =   0
+      TabIndex        =   4
       Top             =   488
       Width           =   615
    End
@@ -98,29 +134,131 @@ Private Sub Command1_Click()
         MsgBox "班级名称不能为空", vbOKOnly + vbExclamation, "温馨提示"
     Else
         'create a drive string
-        db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source='"
-        db_drive = db_drive & db_name & Class_Grade.Text & ".mdb'"
-        'if no exist database and table
-        'create them
-        If Dir(db_name & Class_Grade.Text & ".mdb") = "" Then
-            Set catalog = New ADOX.catalog
-            Set db_table = New ADOX.Table
-            catalog.Create (db_drive)
-            catalog.ActiveConnection = db_drive
-            On Error GoTo DatabaseError
-            table_name = Class_Grade.Text
-            db_table.Name = table_name
-            db_table.Columns.Append "index", ADOX.DataTypeEnum.adInteger
-            db_table.Columns.Append "id", ADOX.DataTypeEnum.adInteger
-            db_table.Columns.Append "name", ADOX.DataTypeEnum.adWChar
-            db_table.Columns.Append "moral_score", ADOX.DataTypeEnum.adInteger
-            catalog.Tables.Append db_table
-        End If
+        db_password = Password.Text
         table_name = Class_Grade.Text
-        Me.Hide
-        manage.Show
-        Exit Sub
+        If db_password = "" Then
+            If Dir(db_name & Class_Grade.Text & ".mdb") = "" Then
+                Dim isPassword
+                isPassword = MsgBox("密码为空，安全性较低，是否继续？", _
+                    vbYesNo + vbExclamation, "温馨提示")
+                If isPassword = vbYes Then
+                    db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+                        db_name & table_name & ".mdb" & Chr(34)
+                    If Dir(db_name & Class_Grade.Text & ".mdb") = "" Then
+                        Set catalog = New adox.catalog
+                        Set db_table = New adox.Table
+                        On Error GoTo DatabaseError
+                        catalog.Create db_drive
+                        catalog.ActiveConnection = db_drive
+                        table_name = Class_Grade.Text
+                        db_table.Name = table_name
+                        db_table.Columns.Append "index", adox.DataTypeEnum.adInteger, 10
+                        db_table.Columns.Append "id", adox.DataTypeEnum.adInteger, 10
+                        db_table.Columns.Append "name", adox.DataTypeEnum.adWChar, 10
+                        db_table.Columns.Append "moral_score", adox.DataTypeEnum.adInteger
+                        db_table.Columns.Append "explicit", adox.DataTypeEnum.adWChar, 200
+                        catalog.Tables.Append db_table
+                        If Dir(db_name & table_name & "德育分细则\", vbDirectory) = "" Then
+                            MkDir db_name & table_name & "德育分细则\"
+                        End If
+                        manage.Show
+                        Unload Me
+                    Else
+                        db_password = Password.Text
+                        db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+                            db_name & Class_Grade.Text & ".mdb" & Chr(34)
+                        Set db_conn = New ADODB.Connection
+                        On Error Resume Next
+                        db_conn.Open db_drive
+                        If db_conn.State = adStateClosed Then
+                            MsgBox "密码有误！", vbOKOnly + vbCritical, "错误"
+                            Exit Sub
+                        Else
+                            db_conn.Close
+                            manage.Show
+                            Unload Me
+                        End If
+                    End If
+                End If
+            Else
+                db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+                    db_name & table_name & ".mdb" & Chr(34)
+                If Dir(db_name & Class_Grade.Text & ".mdb") = "" Then
+                    Set catalog = New adox.catalog
+                    Set db_table = New adox.Table
+                    On Error GoTo DatabaseError
+                    catalog.Create db_drive
+                    catalog.ActiveConnection = db_drive
+                    table_name = Class_Grade.Text
+                    db_table.Name = table_name
+                    db_table.Columns.Append "index", adox.DataTypeEnum.adInteger
+                    db_table.Columns.Append "id", adox.DataTypeEnum.adInteger
+                    db_table.Columns.Append "name", adox.DataTypeEnum.adWChar
+                    db_table.Columns.Append "moral_score", adox.DataTypeEnum.adInteger
+                    db_table.Columns.Append "explicit", adox.DataTypeEnum.adWChar, 200
+                    catalog.Tables.Append db_table
+                    manage.Show
+                    Unload Me
+                Else
+                    db_password = Password.Text
+                    db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+                        db_name & Class_Grade.Text & ".mdb" & Chr(34)
+                    Set db_conn = New ADODB.Connection
+                    On Error Resume Next
+                    db_conn.Open db_drive
+                    If db_conn.State = adStateClosed Then
+                        MsgBox "密码有误！", vbOKOnly + vbCritical, "错误"
+                        Exit Sub
+                    Else
+                        db_conn.Close
+                        manage.Show
+                        Unload Me
+                    End If
+                End If
+            End If
+        Else
+            db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+                db_name & Class_Grade.Text & ".mdb" & Chr(34) & ";Jet OLEDB:Database" & _
+                " Password=" & db_password
+            'if no exist database and table
+            'create them
+            table_name = Class_Grade.Text
+            If Dir(db_name & Class_Grade.Text & ".mdb") = "" Then
+                Set catalog = New adox.catalog
+                Set db_table = New adox.Table
+                On Error GoTo DatabaseError
+                catalog.Create db_drive
+                catalog.ActiveConnection = db_drive
+                table_name = Class_Grade.Text
+                db_table.Name = table_name
+                db_table.Columns.Append "index", adox.DataTypeEnum.adInteger
+                db_table.Columns.Append "id", adox.DataTypeEnum.adInteger
+                db_table.Columns.Append "name", adox.DataTypeEnum.adWChar
+                db_table.Columns.Append "moral_score", adox.DataTypeEnum.adInteger
+                db_table.Columns.Append "explicit", adox.DataTypeEnum.adWChar
+                catalog.Tables.Append db_table
+                manage.Show
+                Unload Me
+            Else
+                db_password = Password.Text
+                db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+                    db_name & Class_Grade.Text & ".mdb" & Chr(34) & ";Jet OLEDB:Database" & _
+                    " Password=" & db_password
+                Set db_conn = New ADODB.Connection
+                On Error Resume Next
+                db_conn.Open db_drive
+                If db_conn.State = adStateClosed Then
+                    MsgBox "密码有误！", vbOKOnly + vbCritical, "错误"
+                    Exit Sub
+                Else
+                    db_conn.Close
+                    manage.Show
+                    Unload Me
+                End If
+            End If
+        End If
     End If
+    Exit Sub
 DatabaseError:
     MsgBox "数据库操作失败，错误信息：" & Err.Description, vbOKOnly + vbExclamation, "提示"
     Exit Sub

@@ -5,8 +5,10 @@ Reference=*\G{00000600-0000-0010-8000-00AA006D2EA4}#2.8#0#..\..\Program Files\Co
 Form=login.frm
 Form=manage.frm
 Module=global; global.bas
+Form=change_explicit.frm
+Form=moral_score_situation.frm
 Startup="login"
-ExeName32="德育分管理器 v0.2.exe"
+ExeName32="德育管家 v0.3.exe"
 Path32="..\..\Documents and Settings\Administrator\桌面"
 Command32=""
 Name="工程1"
@@ -33,6 +35,7 @@ Unattended=0
 Retained=0
 ThreadPerObject=0
 MaxNumberOfThreads=1
+DebugStartupOption=0
 
 [MS Transaction Server]
 AutoRefresh=1

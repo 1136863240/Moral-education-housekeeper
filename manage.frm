@@ -1,44 +1,89 @@
 VERSION 5.00
 Begin VB.Form manage 
-   Caption         =   "德育分管理器v0.2 - 管理"
-   ClientHeight    =   3660
-   ClientLeft      =   60
-   ClientTop       =   450
+   BorderStyle     =   1  'Fixed Single
+   Caption         =   "德育管家v0.3 - 管理"
+   ClientHeight    =   4050
+   ClientLeft      =   45
+   ClientTop       =   435
    ClientWidth     =   5790
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
-   ScaleHeight     =   3660
+   ScaleHeight     =   4050
    ScaleWidth      =   5790
    StartUpPosition =   2  '屏幕中心
+   Begin VB.CommandButton moral_score_check 
+      Caption         =   "德育分情况"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   12
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   3159
+      TabIndex        =   17
+      Top             =   1876
+      Width           =   1665
+   End
    Begin VB.CommandButton change_moral_score 
       Caption         =   "确定修改"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   12
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   495
-      Left            =   4665
-      TabIndex        =   15
-      Top             =   1560
-      Width           =   885
+      Left            =   3780
+      TabIndex        =   13
+      Top             =   2551
+      Width           =   1485
    End
    Begin VB.CommandButton up 
       Caption         =   "+"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   12
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   345
-      Left            =   4155
-      TabIndex        =   14
-      Top             =   1635
+      Left            =   3159
+      TabIndex        =   12
+      Top             =   2626
       Width           =   420
    End
    Begin VB.TextBox change_value 
       Height          =   390
-      Left            =   3495
-      TabIndex        =   13
-      Top             =   1605
-      Width           =   525
+      Left            =   2316
+      TabIndex        =   11
+      Top             =   2611
+      Width           =   645
    End
    Begin VB.CommandButton down 
       Caption         =   "-"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   12
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   345
-      Left            =   2955
-      TabIndex        =   12
-      Top             =   1635
+      Left            =   1698
+      TabIndex        =   10
+      Top             =   2626
       Width           =   420
    End
    Begin VB.TextBox moral_score 
@@ -52,9 +97,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   390
-      Left            =   1560
-      TabIndex        =   11
-      Top             =   1605
+      Left            =   1620
+      TabIndex        =   9
+      Top             =   1936
       Width           =   1260
    End
    Begin VB.TextBox strName 
@@ -68,9 +113,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   390
-      Left            =   3645
-      TabIndex        =   9
-      Top             =   945
+      Left            =   3705
+      TabIndex        =   7
+      Top             =   1246
       Width           =   1260
    End
    Begin VB.TextBox id 
@@ -84,44 +129,10 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   390
-      Left            =   1260
-      TabIndex        =   7
-      Top             =   945
-      Width           =   1260
-   End
-   Begin VB.CommandButton btn_return 
-      Caption         =   "还原"
-      BeginProperty Font 
-         Name            =   "宋体"
-         Size            =   12
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   495
-      Left            =   3165
+      Left            =   1320
       TabIndex        =   5
-      Top             =   2925
-      Width           =   1290
-   End
-   Begin VB.CommandButton btn_save 
-      Caption         =   "保存"
-      BeginProperty Font 
-         Name            =   "宋体"
-         Size            =   12
-         Charset         =   134
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   495
-      Left            =   1230
-      TabIndex        =   4
-      Top             =   2925
-      Width           =   1290
+      Top             =   1246
+      Width           =   1260
    End
    Begin VB.CommandButton btn_next 
       Caption         =   "下一个"
@@ -135,9 +146,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   3758
+      Left            =   3818
       TabIndex        =   3
-      Top             =   180
+      Top             =   240
       Width           =   1290
    End
    Begin VB.TextBox page 
@@ -150,10 +161,10 @@ Begin VB.Form manage
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   450
-      Left            =   2138
+      Height          =   420
+      Left            =   2198
       TabIndex        =   1
-      Top             =   195
+      Top             =   255
       Width           =   540
    End
    Begin VB.CommandButton btn_previous 
@@ -168,10 +179,27 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   743
+      Left            =   803
       TabIndex        =   0
-      Top             =   180
+      Top             =   240
       Width           =   1290
+   End
+   Begin VB.Label Label1 
+      Caption         =   "加扣分"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   315
+      Left            =   525
+      TabIndex        =   16
+      Top             =   2641
+      Width           =   990
    End
    Begin VB.Label grade 
       BeginProperty Font 
@@ -184,9 +212,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   1560
-      TabIndex        =   17
-      Top             =   2295
+      Left            =   1620
+      TabIndex        =   15
+      Top             =   3391
       Width           =   1035
    End
    Begin VB.Label Label5 
@@ -200,10 +228,10 @@ Begin VB.Form manage
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   375
-      Left            =   465
-      TabIndex        =   16
-      Top             =   2295
+      Height          =   315
+      Left            =   525
+      TabIndex        =   14
+      Top             =   3376
       Width           =   615
    End
    Begin VB.Label Label4 
@@ -217,11 +245,11 @@ Begin VB.Form manage
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   375
-      Left            =   465
-      TabIndex        =   10
-      Top             =   1650
-      Width           =   975
+      Height          =   315
+      Left            =   525
+      TabIndex        =   8
+      Top             =   1966
+      Width           =   990
    End
    Begin VB.Label Label3 
       Caption         =   "姓名"
@@ -234,10 +262,10 @@ Begin VB.Form manage
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   375
-      Left            =   2850
-      TabIndex        =   8
-      Top             =   990
+      Height          =   315
+      Left            =   2910
+      TabIndex        =   6
+      Top             =   1291
       Width           =   615
    End
    Begin VB.Label Label2 
@@ -251,10 +279,10 @@ Begin VB.Form manage
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   375
-      Left            =   465
-      TabIndex        =   6
-      Top             =   990
+      Height          =   315
+      Left            =   525
+      TabIndex        =   4
+      Top             =   1291
       Width           =   615
    End
    Begin VB.Label for_count 
@@ -269,9 +297,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   2783
+      Left            =   2850
       TabIndex        =   2
-      Top             =   270
+      Top             =   330
       Width           =   765
    End
 End
@@ -283,76 +311,31 @@ Attribute VB_Exposed = False
 Public isSave
 
 Private Sub btn_next_Click()
-'check is changed
+    'check is changed
     If Val(page.Text) = 0 Then
-        sql = "INSERT INTO " & table_name & " VALUES(" & (db_count("row").Value + 1) & "," & _
-            (db_count("row").Value + 1) & ",'',75)"
-        db_conn.Execute sql
         id.Enabled = True
         strName.Enabled = True
         moral_score.Enabled = True
         change_value.Enabled = True
         grade.Enabled = True
         btn_next.Caption = "添加"
-        btn_save.Enabled = True
-        btn_return.Enabled = True
         down.Enabled = True
         up.Enabled = True
-        change_value.Text = "0"
-        page.Text = "1"
-        for_count.Caption = "/ 1"
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-        db_record = db_conn.Execute(sql)
-        id.Text = db_record("id").Value
-        strName.Text = Trim(db_record("name").Value)
-        moral_score.Text = db_record("moral_score").Value
-        change_value.Text = "0"
+        change_moral_score.Enabled = True
+        moral_score_check.Enabled = True
+        sql = "INSERT INTO " & table_name & " VALUES(" & (page.Text + 1) & "," & (page.Text + 1) & _
+            ",'',75,'" & db_name & table_name & "德育分细则\" & strName.Text & ".mdb" & "')"
+        db_conn.Execute sql
     ElseIf Val(page.Text) = Val(Mid(for_count.Caption, 3)) Then
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-        db_record = db_conn.Execute(sql)
-        If id.Text <> db_record("id").Value Or _
-            strName.Text <> Trim(db_record("name").Value) Or _
-            moral_score.Text <> db_record("moral_score").Value Then
-            isSave = MsgBox("记录已修改，是否保存记录？" & vbCrLf & Chr(34) & "是" & Chr(34) & _
-                "为保存并向下一条记录，" & Chr(34) & "否" & Chr(34) & "为还原并" & _
-                "向下一条记录", vbYesNo + vbExclamation, "温馨提示")
-            If isSave = vbYes Then
-                sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                    "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
-                db_conn.Execute (sql)
-            Else
-                id.Text = db_record("id").Value
-                strName.Text = Trim(db_record("name").Value)
-                moral_score.Text = db_record("moral_score").Value
-                change_value.Text = "0"
-                If id.Text = "" Or _
-                    Trim(strName.Text) = "" Or _
-                    moral_score.Text = "" Then
-                    MsgBox "学号、姓名或德育分不能为空", vbOKOnly + vbExclamation, "提示"
-                    Exit Sub
-                End If
-            End If
-        End If
         If id.Text = "" Or _
             Trim(strName.Text) = "" Or _
             moral_score.Text = "" Then
             MsgBox "学号、姓名或德育分不能为空", vbOKOnly + vbExclamation, "提示"
             Exit Sub
         End If
-        page.Text = Val(page.Text) + 1
-        for_count.Caption = "/ " & page.Text
-        sql = "INSERT INTO " & table_name & " VALUES(" & page.Text & _
-            "," & page.Text & ",'',75)"
+        sql = "INSERT INTO " & table_name & " VALUES(" & (page.Text + 1) & "," & (page.Text + 1) & _
+            ",'',75,'" & db_name & table_name & "德育分细则\" & strName.Text & ".mdb" & "')"
         db_conn.Execute sql
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-        db_record = db_conn.Execute(sql)
-        id.Text = db_record("id").Value
-        strName.Text = Trim(db_record("name").Value)
-        moral_score.Text = db_record("moral_score").Value
-        change_value.Text = "0"
-        If Val(page.Text) > 0 Then
-            btn_previous.Enabled = True
-        End If
     ElseIf Val(page.Text) = Val(Mid(for_count.Caption, 3)) - 1 Then
         If id.Text = "" Or _
             Trim(strName.Text) = "" Or _
@@ -360,241 +343,96 @@ Private Sub btn_next_Click()
             MsgBox "学号、姓名或德育分不能为空", vbOKOnly + vbExclamation, "提示"
             Exit Sub
         End If
-        If db_count("row").Value > 0 Then
-            If Val(id.Text) <> db_record("id").Value Or _
-                Trim(strName.Text) <> Trim(db_record("name").Value) Or _
-                Val(moral_score.Text) <> db_record("moral_score").Value Then
-                isSave = MsgBox("记录已修改，是否保存记录？" & vbCrLf & Chr(34) & "是" & Chr(34) & _
-                    "为保存并向下一条记录，" & Chr(34) & "否" & Chr(34) & "为还原并" & _
-                    "向下一条记录", vbYesNo + vbExclamation, "温馨提示")
-                If isSave = vbYes Then
-                    sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                        "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
-                    db_conn.Execute (sql)
-                Else
-                    id.Text = db_record("id").Value
-                    strName.Text = Trim(db_record("name").Value)
-                    moral_score.Text = db_record("moral_score").Value
-                    change_value.Text = "0"
-                    If id.Text = "" Or _
-                        Trim(strName.Text) = "" Or _
-                        moral_score.Text = "" Then
-                        MsgBox "学号、姓名或德育分不能为空", vbOKOnly + vbExclamation, "提示"
-                        Exit Sub
-                    End If
-                End If
-            End If
-        End If
         btn_previous.Enabled = True
         btn_next.Caption = "添加"
         sql = "SELECT COUNT(*) AS row FROM " & table_name
         db_count = db_conn.Execute(sql)
-        page.Text = Val(page.Text) + 1
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-        db_record = db_conn.Execute(sql)
-        id.Text = db_record("id").Value
-        strName.Text = Trim(db_record("name").Value)
-        moral_score.Text = db_record("moral_score").Value
-        change_value.Text = "0"
-    Else
-        If id.Text = "" Or _
-            Trim(strName.Text) = "" Or _
-            moral_score.Text = "" Then
-            MsgBox "学号、姓名或德育分不能为空", vbOKOnly + vbExclamation, "提示"
-            Exit Sub
-        Else
-            'first check note
-            sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-            db_record = db_conn.Execute(sql)
-            'when database's count is not empty
-            If db_count("row").Value > 0 Then
-                If Val(id.Text) <> db_record("id").Value Or _
-                    Trim(strName.Text) <> Trim(db_record("name").Value) Or _
-                    Val(moral_score.Text) <> db_record("moral_score").Value Then
-                    isSave = MsgBox("记录已修改，是否保存记录？" & vbCrLf & Chr(34) & "是" & Chr(34) & _
-                        "为保存并向下一条记录，" & Chr(34) & "否" & Chr(34) & "为还原并" & _
-                        "向下一条记录", vbYesNo + vbExclamation, "温馨提示")
-                    If isSave = vbYes Then
-                        sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                            "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
-                        db_conn.Execute (sql)
-                    Else
-                        id.Text = db_record("id").Value
-                        strName.Text = Trim(db_record("name").Value)
-                        moral_score.Text = db_record("moral_score").Value
-                        change_value.Text = "0"
-                        If id.Text = "" Or _
-                            Trim(strName.Text) = "" Or _
-                            moral_score.Text = "" Then
-                            MsgBox "学号、姓名或德育分不能为空", vbOKOnly + vbExclamation, "提示"
-                            Exit Sub
-                        End If
-                    End If
-                    'finish check
-                    'select next
-                    page.Text = Val(page.Text) + 1
-                    sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-                    db_record = db_conn.Execute(sql)
-                    id.Text = db_record("id").Value
-                    strName.Text = Trim(db_record("name").Value)
-                    moral_score.Text = db_record("moral_score").Value
-                    change_value.Text = "0"
-                Else
-                    page.Text = Val(page.Text) + 1
-                    sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-                    db_record = db_conn.Execute(sql)
-                    id.Text = db_record("id").Value
-                    strName.Text = Trim(db_record("name").Value)
-                    moral_score.Text = db_record("moral_score").Value
-                    change_value.Text = "0"
-                    btn_previous.Enabled = True
-                End If
-            'or ...
-            Else
-                page.Text = Val(page.Text) + 1
-                sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-                db_record = db_conn.Execute(sql)
-                id.Text = db_record("id").Value
-                strName.Text = Trim(db_record("name").Value)
-                moral_score.Text = db_record("moral_score").Value
-                change_value.Text = "0"
-                btn_previous.Enabled = True
-                If Val(moral_score.Text) < 60 Then
-                    grade.Caption = "不及格"
-                ElseIf Val(moral_score.Text) >= 60 And _
-                    Val(moral_score.Text) < 75 Then
-                    grade.Caption = "及格"
-                ElseIf Val(moral_score.Text) >= 75 And _
-                    Val(moral_score.Text) < 85 Then
-                    grade.Caption = "良好"
-                Else
-                    grade.Caption = "优秀"
-                End If
-            End If
-        End If
+    End If
+    page.Text = Val(page.Text) + 1
+    sql = "SELECT COUNT(*) AS row FROM " & table_name
+    db_count = db_conn.Execute(sql)
+    for_count.Caption = "/ " & db_count("row").Value
+    sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
+    db_record = db_conn.Execute(sql)
+    id.Text = db_record("id").Value
+    strName.Text = Trim(db_record("name").Value)
+    moral_score.Text = db_record("moral_score").Value
+    change_value.Text = "0"
+    If Val(page.Text) > 0 Then
+        btn_previous.Enabled = True
     End If
 End Sub
 
 Private Sub btn_previous_Click()
-    'check is changed
+    page.Text = Val(page.Text) - 1
     sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-    db_record = db_conn.Execute(sql)
-    If id.Text <> db_record("id").Value Or _
-        Trim(strName.Text) <> Trim(db_record("name").Value) Or _
-        moral_score.Text <> db_record("moral_score").Value Then
-        isSave = MsgBox("记录已修改，是否保存记录？" & vbCrLf & Chr(34) & "是" & Chr(34) & _
-            "为保存并向上一条记录，" & Chr(34) & "否" & Chr(34) & "为还原并" & _
-            "向上一条记录", vbYesNo + vbExclamation, "温馨提示")
-        If isSave = vbYes Then
-            sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
-            db_conn.Execute sql
-        End If
-    End If
-    'go into previous note
-    If Val(page.Text) = 2 Then
-        page.Text = Val(page.Text) - 1
+    If Val(page.Text) = 1 Then
         btn_previous.Enabled = False
-        sql = "SELECT * FROM " & table_name & " WHERE index = 1"
-        db_record = db_conn.Execute(sql)
-        id.Text = db_record("id").Value
-        strName.Text = Trim(db_record("name").Value)
-        moral_score.Text = db_record("moral_score").Value
-        change_value.Text = "0"
-    ElseIf Val(page.Text) > 2 Then
-        page.Text = Val(page.Text) - 1
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-        db_record = db_conn.Execute(sql)
-        id.Text = db_record("id").Value
-        strName.Text = Trim(db_record("name").Value)
-        moral_score.Text = db_record("moral_score").Value
-        change_value.Text = "0"
     End If
-        btn_next.Caption = "下一条"
-End Sub
-
-Private Sub btn_return_Click()
-    Dim isReturn
-    isReturn = MsgBox("确定要还原记录吗？" & vbCrLf & Chr(34) & "是" & Chr(34) & _
-        "为还原记录，" & Chr(34) & "否" & Chr(34) & "为不还原", vbYesNo + vbExclamation, "温馨提示")
-    If isReturn = vbYes Then
-        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-        db_record = db_conn.Execute(sql)
-        If db_count("row").Value > 0 Then
-            id.Text = db_record("id").Value
-            strName.Text = Trim(db_record("name").Value)
-            moral_score.Text = db_record("moral_score").Value
-            change_value.Text = "0"
-        Else
-            MsgBox "数据库中无相关内容，无法还原", vbOKOnly + vbExclamation, "提示"
-        End If
-    End If
-End Sub
-
-Private Sub btn_save_Click()
-    On Error GoTo Error
-    If id.Text = "" Or _
-        Trim(strName.Text) = "" Or _
-        moral_score.Text = "" Then
-            MsgBox "学号、姓名或德育分不能为空", vbOKOnly + vbExclamation, "提示"
-            Exit Sub
-    End If
-    sql = "SELECT COUNT(*) AS row FROM " & table_name
-    db_count = db_conn.Execute(sql)
-    If Val(db_count("row").Value) > 0 And Val(db_count("row").Value) >= Val(page.Text) Then
-        sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-            "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
-        db_conn.Execute (sql)
-    Else
-        sql = "INSERT INTO " & table_name & " VALUES(" & page.Text & "," & id.Text & ",'" & _
-            strName.Text & "'," & moral_score.Text & ")"
-        MsgBox sql
-        db_conn.Execute (sql)
-    End If
-    sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
     db_record = db_conn.Execute(sql)
-    If db_record("id").Value = id.Text And _
-        Trim(db_record("name").Value) = Trim(strName.Text) And _
-        db_record("moral_score").Value = moral_score.Text Then
-        MsgBox "保存成功", vbOKOnly + vbExclamation, "提示"
-    Else
-        MsgBox "保存失败", vbOKOnly + vbCritical, "错误"
-    End If
-    If db_record("moral_score").Value < 60 Then
-        grade.Caption = "不及格"
-    ElseIf db_record("moral_score").Value >= 60 And _
-        db_record("moral_score").Value < 75 Then
-        grade.Caption = "及格"
-    ElseIf db_record("moral_score").Value >= 75 And _
-        db_record("moral_score").Value < 85 Then
-        grade.Caption = "良好"
-    Else
-        grade.Caption = "优秀"
-    End If
-    Exit Sub
-Error:
-    MsgBox "出现错误，错误信息：" & Err.Description, vbOKOnly, "出错"
-    Exit Sub
+    btn_next.Caption = "下一条"
+    id.Text = db_record("id").Value
+    strName.Text = Trim(db_record("name").Value)
+    moral_score.Text = db_record("moral_score").Value
+    change_value.Text = "0"
 End Sub
 
 Private Sub change_moral_score_Click()
-    moral_score.Text = Val(moral_score.Text) + Val(change_value.Text)
-    If db_record("moral_score").Value < 60 Then
-        grade.Caption = "不及格"
-    ElseIf db_record("moral_score").Value >= 60 And _
-        db_record("moral_score").Value < 75 Then
-        grade.Caption = "及格"
-    ElseIf db_record("moral_score").Value >= 75 And _
-        db_record("moral_score").Value < 85 Then
-        grade.Caption = "良好"
+    If Val(change_value.Text) = 0 Then
+        MsgBox "修改值为零，德育分未修改", vbOKOnly + vbExclamation, "提示"
     Else
-        grade.Caption = "优秀"
+        If strName.Text = "" Then
+            MsgBox "姓名不能为空！", vbOKOnly + vbExclamation, "提示"
+            Exit Sub
+        End If
+        change_score = change_value.Text
+        student_table = strName.Text
+        If Dir(db_name & table_name & "德育分细则\" & strName.Text & ".mdb") = "" Then
+            If Dir(db_name & table_name & "德育分细则", vbDirectory) = "" Then
+                MkDir db_name & table_name & "德育分细则"
+            End If
+            db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+                db_name & table_name & "德育分细则\" & strName.Text & ".mdb" & Chr(34)
+            Set catalog = Nothing
+            Set db_table = Nothing
+            Set catalog = New adox.catalog
+            Set db_table = New adox.Table
+            catalog.Create db_drive
+            catalog.ActiveConnection = db_drive
+            db_table.Name = strName.Text
+            db_table.Columns.Append "index", adox.DataTypeEnum.adInteger
+            db_table.Columns.Append "date_index", adox.DataTypeEnum.adInteger
+            db_table.Columns.Append "operate_date", adox.DataTypeEnum.adDate
+            db_table.Columns.Append "change_value", adox.DataTypeEnum.adInteger
+            db_table.Columns.Append "explicit", adox.DataTypeEnum.adWChar
+            catalog.Tables.Append db_table
+        End If
+        Set db_conn_explicit = New ADODB.Connection
+        db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+            db_name & table_name & "德育分细则\" & student_table & ".mdb" & Chr(34)
+        db_conn_explicit.Open db_drive
+        sql = "SELECT COUNT(*) AS explicit_count FROM " & student_table & _
+            " WHERE operate_date = #" & Date & "#"
+        db_record = db_conn_explicit.Execute(sql)
+        If Val(db_record("explicit_count").Value) > 0 Then
+            db_index = db_record("explicit_count").Value
+        Else
+            db_index = 0
+        End If
+        change_score = change_value.Text
+        change_explicit.Show vbModal, Me
+        If sub_score = True Then
+            moral_score.Text = Val(moral_score.Text) + Val(change_value.Text)
+        End If
+        change_value.Text = "0"
     End If
 End Sub
 
 Private Sub change_value_Change()
     If change_value.Text = "" Then
         change_value.Text = "0"
+    Else
+        change_value.Text = Val(change_value.Text)
     End If
 End Sub
 
@@ -602,7 +440,7 @@ Private Sub down_Click()
     change_value.Text = Val(change_value.Text) - 1
 End Sub
 
-Private Sub Form_Unload(Cancel As Integer)
+Private Sub Form_Unload(cancel As Integer)
     If Val(page.Text) > 0 Then
         sql = "SELECT * FROM " & table_name & " WHERE index = " & Mid(for_count.Caption, 3)
         db_record = db_conn.Execute(sql)
@@ -622,22 +460,6 @@ Private Sub Form_Unload(Cancel As Integer)
             db_conn.Close
             End
         End If
-        If db_count("row").Value > 0 Then
-            If id.Text <> db_record("id").Value Or _
-                Trim(strName.Text) <> Trim(db_record("name").Value) Or _
-                moral_score.Text <> db_record("moral_score").Value Then
-                isSave = MsgBox("记录已修改，是否保存记录？" & vbCrLf & Chr(34) & "是" & Chr(34) & _
-                    "为保存并退出，" & Chr(34) & "否" & Chr(34) & "为还原并" & "退出", vbYesNo + _
-                    vbExclamation, "温馨提示")
-                If isSave = vbYes Then
-                    sql = "UPDATE " & table_name & " SET id = " & id.Text & ", name = '" & strName.Text & _
-                        "', moral_score = " & moral_score.Text & " WHERE index = " & page.Text
-                    db_conn.Execute sql
-                End If
-            End If
-        Else
-            End
-        End If
     Else
         db_conn.Close
         End
@@ -647,7 +469,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub Form_Load()
-    Me.Caption = "德育分管理器beta - " & table_name & "管理"
+    Me.Caption = "德育分管理器v0.3 - " & table_name & "管理"
     On Error GoTo OperatorError
     Set db_conn = New ADODB.Connection
     db_conn.Open db_drive, "Admin"
@@ -670,17 +492,6 @@ Private Sub Form_Load()
         moral_score.Text = db_record("moral_score").Value
         change_value.Text = "0"
         btn_previous.Enabled = False
-        If db_record("moral_score").Value < 60 Then
-            grade.Caption = "不及格"
-        ElseIf db_record("moral_score").Value >= 60 And _
-            db_record("moral_score").Value < 75 Then
-            grade.Caption = "及格"
-        ElseIf db_record("moral_score").Value >= 75 And _
-            db_record("moral_score").Value < 85 Then
-            grade.Caption = "良好"
-        Else
-            grade.Caption = "优秀"
-        End If
     Else
         page.Text = "0"
         id.Enabled = False
@@ -690,58 +501,88 @@ Private Sub Form_Load()
         grade.Enabled = False
         btn_previous.Enabled = False
         btn_next.Caption = "添加"
-        btn_save.Enabled = False
-        btn_return.Enabled = False
         down.Enabled = False
         up.Enabled = False
+        change_moral_score.Enabled = False
+        moral_score_check.Enabled = False
     End If
     Exit Sub
 OperatorError:
     MsgBox "操作出错，错误信息：" & Err.Description, vbOKOnly + vbExclamation, "提示"
-    db_conn.Close
     End
 End Sub
 
-Private Sub moral_score_Change()
-    If moral_score.Text = "" Then
-        moral_score.Text = "0"
+Private Sub id_Change()
+    If id.Text = "" Then
+        id.Text = "1"
+    Else
+        sql = "UPDATE " & table_name & " SET id = " & id.Text & " WHERE index = " & page.Text
+        db_conn.Execute sql
     End If
-    Dim index As Integer
-    For index = 1 To Len(moral_score.Text)
-        If Asc(Mid(moral_score.Text, index, 1)) < Asc("0") Or _
-            Asc(Mid(moral_score.Text, index, 1)) > Asc("9") Then
-            MsgBox "德育分不允许出现非数字", vbOKOnly + vbExclamation, "提示"
-        Else
-            If Val(moral_score.Text) < 60 Then
-                grade.Caption = "不及格"
-            ElseIf Val(moral_score.Text) >= 60 And _
-                Val(moral_score.Text) < 75 Then
-                grade.Caption = "及格"
-            ElseIf Val(moral_score.Text) >= 75 And _
-                Val(moral_score.Text) < 85 Then
-                grade.Caption = "良好"
-            Else
-                grade.Caption = "优秀"
-            End If
-        End If
-    Next
+End Sub
+
+Private Sub moral_score_Change()
+    moral_score.Text = Val(moral_score.Text)
+    If Val(moral_score.Text) < 60 Then
+        grade.Caption = "不及格"
+    ElseIf Val(moral_score.Text) >= 60 And _
+        Val(moral_score.Text) < 75 Then
+        grade.Caption = "及格"
+    ElseIf Val(moral_score.Text) >= 75 And _
+        Val(moral_score.Text) < 85 Then
+        grade.Caption = "良好"
+    Else
+        grade.Caption = "优秀"
+    End If
+End Sub
+
+Private Sub moral_score_check_Click()
+    student_table = strName.Text
+    If Dir(db_name & table_name & "德育分细则\" & student_table & ".mdb") = "" Then
+        MsgBox "无任何修改相关记录", vbOKOnly + vbExclamation, "提示"
+        Exit Sub
+    End If
+    Dim connect_manager, drive
+    Set connect_manager = New ADODB.Connection
+    drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+        db_name & table_name & "德育分细则\" & student_table & ".mdb" & Chr(34)
+    connect_manager.Open drive
+    
+    sql = "SELECT COUNT(*) AS body_count FROM " & student_table
+    db_record = connect_manager.Execute(sql)
+    If Val(db_record("body_count").Value) = 0 Then
+        MsgBox "无任何修改相关记录", vbOKOnly + vbExclamation, "提示"
+        Exit Sub
+    End If
+    If strName.Text = "" Then
+        MsgBox "姓名不能为空", vbOKOnly + vbExclamation, "提示"
+    Else
+        moral_score_situation.Show vbModal, Me
+    End If
 End Sub
 
 Private Sub page_KeyPress(KeyAscii As Integer)
     If KeyAscii = 13 Then
-        sql = "SELECT COUNT(*) AS row FROM " & table_name & " WHERE index = " & page.Text
-        db_record = db_conn.Execute(sql)
-        If Val(db_record("row").Value) = 0 Then
-            MsgBox "无相关记录", vbOKOnly + vbExclamation, "提示"
-        Else
-            sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
-            db_record = db_conn.Execute(sql)
-            id.Text = db_record("id").Value
-            strName.Text = Trim(db_record("name").Value)
-            moral_score.Text = db_record("moral_score").Value
-            change_value.Text = "0"
+        If Val(page.Text) > Val(Mid(for_count.Caption, 3)) And _
+            Val(Mid(for_count.Caption, 3)) > 0 Then
+            page.Text = Mid(for_count.Caption, 3)
+        ElseIf Val(page.Text) = 0 Then
+            Exit Sub
         End If
+        sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
+        db_record = db_conn.Execute(sql)
+        id.Text = db_record("id").Value
+        strName.Text = Trim(db_record("name").Value)
+        moral_score.Text = db_record("moral_score").Value
+        change_value.Text = "0"
     End If
+End Sub
+
+Private Sub strName_Change()
+    sql = "UPDATE " & table_name & " SET name = '" & strName.Text & _
+        "',explicit = '" & db_name & table_name & "德育分细则\" & _
+        strName.Text & ".mdb" & "' WHERE index = " & page.Text
+    db_conn.Execute sql
 End Sub
 
 Private Sub up_Click()
