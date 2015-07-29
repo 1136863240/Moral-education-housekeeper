@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form class_base 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.4 - 班级基本情况"
+   Caption         =   "德育管家v1.0 - 班级基本情况"
    ClientHeight    =   4470
    ClientLeft      =   105
    ClientTop       =   435

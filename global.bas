@@ -32,3 +32,4 @@ Public select_score As Boolean
 Public range_score_least As Integer
 Public range_score_most As Integer
 Public select_range_index As Integer
+

@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form moral_score_situation 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.4 - 德育分情况"
+   Caption         =   "德育管家v1.0 - 德育分情况"
    ClientHeight    =   4635
    ClientLeft      =   45
    ClientTop       =   435

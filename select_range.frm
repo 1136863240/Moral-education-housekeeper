@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form select_range 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.4 - 范围选择"
+   Caption         =   "德育管家v1.0 - 范围选择"
    ClientHeight    =   2115
    ClientLeft      =   45
    ClientTop       =   435

@@ -1,16 +1,34 @@
 VERSION 5.00
 Begin VB.Form login 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.4 - 请输入班级"
-   ClientHeight    =   2970
+   Caption         =   "德育管家v1.0 - 请输入班级"
+   ClientHeight    =   3315
    ClientLeft      =   45
-   ClientTop       =   435
+   ClientTop       =   735
    ClientWidth     =   4740
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
-   ScaleHeight     =   2970
+   ScaleHeight     =   3315
    ScaleWidth      =   4740
    StartUpPosition =   2  '屏幕中心
+   Begin VB.TextBox login_user 
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   420
+      IMEMode         =   3  'DISABLE
+      Left            =   1635
+      PasswordChar    =   "*"
+      TabIndex        =   6
+      Top             =   1072
+      Width           =   2415
+   End
    Begin VB.TextBox Password 
       BeginProperty Font 
          Name            =   "宋体"
@@ -26,7 +44,7 @@ Begin VB.Form login
       Left            =   1635
       PasswordChar    =   "*"
       TabIndex        =   1
-      Top             =   1237
+      Top             =   1710
       Width           =   2415
    End
    Begin VB.ComboBox Class_Grade 
@@ -47,7 +65,8 @@ Begin VB.Form login
       Top             =   435
       Width           =   2415
    End
-   Begin VB.CommandButton Command2 
+   Begin VB.CommandButton exit 
+      Cancel          =   -1  'True
       Caption         =   "退出"
       BeginProperty Font 
          Name            =   "宋体"
@@ -61,10 +80,10 @@ Begin VB.Form login
       Height          =   495
       Left            =   2603
       TabIndex        =   3
-      Top             =   2055
+      Top             =   2535
       Width           =   1455
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton login 
       Caption         =   "确定"
       Default         =   -1  'True
       BeginProperty Font 
@@ -79,8 +98,25 @@ Begin VB.Form login
       Height          =   495
       Left            =   683
       TabIndex        =   2
-      Top             =   2055
+      Top             =   2535
       Width           =   1455
+   End
+   Begin VB.Label Label3 
+      Caption         =   "身份"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   15
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   686
+      TabIndex        =   7
+      Top             =   1114
+      Width           =   615
    End
    Begin VB.Label Label2 
       Caption         =   "密码"
@@ -94,9 +130,9 @@ Begin VB.Form login
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   686
+      Left            =   690
       TabIndex        =   5
-      Top             =   1260
+      Top             =   1740
       Width           =   615
    End
    Begin VB.Label Label1 
@@ -116,13 +152,22 @@ Begin VB.Form login
       Top             =   488
       Width           =   615
    End
+   Begin VB.Menu about_software_link 
+      Caption         =   "关于软件(&A)..."
+      NegotiatePosition=   1  'Left
+   End
 End
 Attribute VB_Name = "login"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub Command1_Click()
+
+Private Sub about_software_link_Click()
+    about_software.Show vbModal, Me
+End Sub
+
+Private Sub login_Click()
     For strIndex = 1 To Len(Class_Grade.Text)
         If Mid(Class_Grade.Text, strIndex, 1) = " " Then
             MsgBox "班级名称中不能出现空格，请检查后重试", vbOKOnly + vbExclamation, "提示"
@@ -264,11 +309,13 @@ DatabaseError:
     Exit Sub
 End Sub
 
-Private Sub Command2_Click()
+Private Sub exit_Click()
     End
 End Sub
 
 Private Sub Form_Load()
+    MsgBox d_en("123456")
+    MsgBox d_de(d_en("123456"))
     On Error GoTo Error
     db_name = App.Path
     If Right(db_name, 1) <> "\" Then 'if it is child directory

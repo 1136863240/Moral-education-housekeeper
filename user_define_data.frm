@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form user_define_data 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.4 - 自定义筛选"
+   Caption         =   "德育管家v1.0 - 自定义筛选"
    ClientHeight    =   2745
    ClientLeft      =   105
    ClientTop       =   435

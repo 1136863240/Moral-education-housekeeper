@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form change_explicit 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.4 - 加扣分细则"
+   Caption         =   "德育管家v1.0 - 加扣分细则"
    ClientHeight    =   3825
    ClientLeft      =   45
    ClientTop       =   435

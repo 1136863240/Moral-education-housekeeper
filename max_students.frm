@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form max_students 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.4 - 德育分最高者"
+   Caption         =   "德育管家v1.0 - 德育分最高者"
    ClientHeight    =   2880
    ClientLeft      =   45
    ClientTop       =   435
