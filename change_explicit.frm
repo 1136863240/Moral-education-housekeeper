@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form change_explicit 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.3 - 加扣分细则"
+   Caption         =   "德育管家v0.4 - 加扣分细则"
    ClientHeight    =   3825
    ClientLeft      =   45
    ClientTop       =   435
@@ -95,9 +95,9 @@ End Sub
 
 Private Sub Form_Load()
     Set conn = New ADODB.Connection
-    db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+    db_single_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
         db_name & table_name & "德育分细则\" & student_table & ".mdb" & Chr(34)
-    conn.Open db_drive
+    conn.Open db_single_drive
     
     sql = "SELECT COUNT(operate_date) AS body_count FROM " & student_table
     db_count = conn.Execute(sql)

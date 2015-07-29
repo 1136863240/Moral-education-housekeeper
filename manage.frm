@@ -1,18 +1,18 @@
 VERSION 5.00
 Begin VB.Form manage 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.3 - 管理"
+   Caption         =   "德育管家v0.4 - 德育分管理"
    ClientHeight    =   4050
    ClientLeft      =   45
    ClientTop       =   435
-   ClientWidth     =   5790
+   ClientWidth     =   5520
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    ScaleHeight     =   4050
-   ScaleWidth      =   5790
+   ScaleWidth      =   5520
    StartUpPosition =   2  '屏幕中心
-   Begin VB.CommandButton moral_score_check 
-      Caption         =   "德育分情况"
+   Begin VB.CommandButton back 
+      Caption         =   "返回"
       BeginProperty Font 
          Name            =   "宋体"
          Size            =   12
@@ -23,13 +23,30 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   3159
+      Left            =   120
+      TabIndex        =   18
+      Top             =   98
+      Width           =   990
+   End
+   Begin VB.CommandButton moral_score_check 
+      Caption         =   "历史记录"
+      BeginProperty Font 
+         Name            =   "宋体"
+         Size            =   12
+         Charset         =   134
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   3165
       TabIndex        =   17
-      Top             =   1876
+      Top             =   1395
       Width           =   1665
    End
    Begin VB.CommandButton change_moral_score 
-      Caption         =   "确定修改"
+      Caption         =   "确定"
       BeginProperty Font 
          Name            =   "宋体"
          Size            =   12
@@ -42,8 +59,8 @@ Begin VB.Form manage
       Height          =   495
       Left            =   3780
       TabIndex        =   13
-      Top             =   2551
-      Width           =   1485
+      Top             =   2070
+      Width           =   1125
    End
    Begin VB.CommandButton up 
       Caption         =   "+"
@@ -57,16 +74,16 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   345
-      Left            =   3159
+      Left            =   3165
       TabIndex        =   12
-      Top             =   2626
+      Top             =   2145
       Width           =   420
    End
    Begin VB.TextBox change_value 
       Height          =   390
-      Left            =   2316
+      Left            =   2325
       TabIndex        =   11
-      Top             =   2611
+      Top             =   2130
       Width           =   645
    End
    Begin VB.CommandButton down 
@@ -81,9 +98,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   345
-      Left            =   1698
+      Left            =   1710
       TabIndex        =   10
-      Top             =   2626
+      Top             =   2145
       Width           =   420
    End
    Begin VB.TextBox moral_score 
@@ -99,7 +116,7 @@ Begin VB.Form manage
       Height          =   390
       Left            =   1620
       TabIndex        =   9
-      Top             =   1936
+      Top             =   1455
       Width           =   1260
    End
    Begin VB.TextBox strName 
@@ -115,7 +132,7 @@ Begin VB.Form manage
       Height          =   390
       Left            =   3705
       TabIndex        =   7
-      Top             =   1246
+      Top             =   765
       Width           =   1260
    End
    Begin VB.TextBox id 
@@ -131,7 +148,7 @@ Begin VB.Form manage
       Height          =   390
       Left            =   1320
       TabIndex        =   5
-      Top             =   1246
+      Top             =   765
       Width           =   1260
    End
    Begin VB.CommandButton btn_next 
@@ -146,9 +163,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   3818
+      Left            =   3825
       TabIndex        =   3
-      Top             =   240
+      Top             =   3420
       Width           =   1290
    End
    Begin VB.TextBox page 
@@ -162,9 +179,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   420
-      Left            =   2198
+      Left            =   2055
       TabIndex        =   1
-      Top             =   255
+      Top             =   135
       Width           =   540
    End
    Begin VB.CommandButton btn_previous 
@@ -179,9 +196,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   495
-      Left            =   803
+      Left            =   330
       TabIndex        =   0
-      Top             =   240
+      Top             =   3420
       Width           =   1290
    End
    Begin VB.Label Label1 
@@ -198,7 +215,7 @@ Begin VB.Form manage
       Height          =   315
       Left            =   525
       TabIndex        =   16
-      Top             =   2641
+      Top             =   2160
       Width           =   990
    End
    Begin VB.Label grade 
@@ -214,7 +231,7 @@ Begin VB.Form manage
       Height          =   300
       Left            =   1620
       TabIndex        =   15
-      Top             =   3391
+      Top             =   2842
       Width           =   1035
    End
    Begin VB.Label Label5 
@@ -231,7 +248,7 @@ Begin VB.Form manage
       Height          =   315
       Left            =   525
       TabIndex        =   14
-      Top             =   3376
+      Top             =   2835
       Width           =   615
    End
    Begin VB.Label Label4 
@@ -248,7 +265,7 @@ Begin VB.Form manage
       Height          =   315
       Left            =   525
       TabIndex        =   8
-      Top             =   1966
+      Top             =   1485
       Width           =   990
    End
    Begin VB.Label Label3 
@@ -265,7 +282,7 @@ Begin VB.Form manage
       Height          =   315
       Left            =   2910
       TabIndex        =   6
-      Top             =   1291
+      Top             =   810
       Width           =   615
    End
    Begin VB.Label Label2 
@@ -282,7 +299,7 @@ Begin VB.Form manage
       Height          =   315
       Left            =   525
       TabIndex        =   4
-      Top             =   1291
+      Top             =   810
       Width           =   615
    End
    Begin VB.Label for_count 
@@ -297,9 +314,9 @@ Begin VB.Form manage
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   2850
+      Left            =   2700
       TabIndex        =   2
-      Top             =   330
+      Top             =   210
       Width           =   765
    End
 End
@@ -309,6 +326,11 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Public isSave
+
+Private Sub back_Click()
+    Unload Me
+    class_base.Show
+End Sub
 
 Private Sub btn_next_Click()
     'check is changed
@@ -336,6 +358,8 @@ Private Sub btn_next_Click()
         sql = "INSERT INTO " & table_name & " VALUES(" & (page.Text + 1) & "," & (page.Text + 1) & _
             ",'',75,'" & db_name & table_name & "德育分细则\" & strName.Text & ".mdb" & "')"
         db_conn.Execute sql
+        strName.Enabled = True
+        strName.SetFocus
     ElseIf Val(page.Text) = Val(Mid(for_count.Caption, 3)) - 1 Then
         If id.Text = "" Or _
             Trim(strName.Text) = "" Or _
@@ -344,6 +368,7 @@ Private Sub btn_next_Click()
             Exit Sub
         End If
         btn_previous.Enabled = True
+        strName.Enabled = False
         btn_next.Caption = "添加"
         sql = "SELECT COUNT(*) AS row FROM " & table_name
         db_count = db_conn.Execute(sql)
@@ -364,17 +389,24 @@ Private Sub btn_next_Click()
 End Sub
 
 Private Sub btn_previous_Click()
+    If id.Text = "" Or _
+        Trim(strName.Text) = "" Or _
+        moral_score.Text = "" Then
+        MsgBox "学号、姓名或德育分不能为空", vbOKOnly + vbExclamation, "提示"
+        Exit Sub
+    End If
     page.Text = Val(page.Text) - 1
     sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
     If Val(page.Text) = 1 Then
         btn_previous.Enabled = False
     End If
     db_record = db_conn.Execute(sql)
-    btn_next.Caption = "下一条"
+    btn_next.Caption = "下一个"
     id.Text = db_record("id").Value
     strName.Text = Trim(db_record("name").Value)
     moral_score.Text = db_record("moral_score").Value
     change_value.Text = "0"
+    strName.Enabled = False
 End Sub
 
 Private Sub change_moral_score_Click()
@@ -391,14 +423,14 @@ Private Sub change_moral_score_Click()
             If Dir(db_name & table_name & "德育分细则", vbDirectory) = "" Then
                 MkDir db_name & table_name & "德育分细则"
             End If
-            db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+            db_single_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
                 db_name & table_name & "德育分细则\" & strName.Text & ".mdb" & Chr(34)
             Set catalog = Nothing
             Set db_table = Nothing
             Set catalog = New adox.catalog
             Set db_table = New adox.Table
-            catalog.Create db_drive
-            catalog.ActiveConnection = db_drive
+            catalog.Create db_single_drive
+            catalog.ActiveConnection = db_single_drive
             db_table.Name = strName.Text
             db_table.Columns.Append "index", adox.DataTypeEnum.adInteger
             db_table.Columns.Append "date_index", adox.DataTypeEnum.adInteger
@@ -408,9 +440,9 @@ Private Sub change_moral_score_Click()
             catalog.Tables.Append db_table
         End If
         Set db_conn_explicit = New ADODB.Connection
-        db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+        db_class_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
             db_name & table_name & "德育分细则\" & student_table & ".mdb" & Chr(34)
-        db_conn_explicit.Open db_drive
+        db_conn_explicit.Open db_class_drive
         sql = "SELECT COUNT(*) AS explicit_count FROM " & student_table & _
             " WHERE operate_date = #" & Date & "#"
         db_record = db_conn_explicit.Execute(sql)
@@ -436,6 +468,7 @@ Private Sub change_value_Change()
     End If
 End Sub
 
+
 Private Sub down_Click()
     change_value.Text = Val(change_value.Text) - 1
 End Sub
@@ -449,30 +482,16 @@ Private Sub Form_Unload(cancel As Integer)
             db_record("moral_score").Value = "" Then
             sql = "DELETE FROM " & table_name & " WHERE index = " & Mid(for_count.Caption, 3)
             db_conn.Execute sql
-            db_conn.Close
-            End
         End If
-        If id.Text = "" Or _
-            strName.Text = "" Or _
-            moral_score.Text = "" Then
-            sql = "DELETE FROM " & table_name & " WHERE index = " & page.Text
-            db_conn.Execute sql
-            db_conn.Close
-            End
-        End If
-    Else
-        db_conn.Close
-        End
     End If
     db_conn.Close
-    End
 End Sub
 
 Private Sub Form_Load()
-    Me.Caption = "德育分管理器v0.3 - " & table_name & "管理"
+    Me.Caption = "德育分管理器v0.4 - " & table_name & "管理"
     On Error GoTo OperatorError
     Set db_conn = New ADODB.Connection
-    db_conn.Open db_drive, "Admin"
+    db_conn.Open db_class_drive, "Admin"
     Set db_record = New ADODB.Recordset
     Set db_count = New ADODB.Recordset
     sql = "SELECT COUNT(*) AS row FROM " & table_name
@@ -483,7 +502,7 @@ Private Sub Form_Load()
         If page.Text = Mid(for_count.Caption, 3) Then
             btn_next.Caption = "添加"
         ElseIf Val(page.Text) > Val(Mid(for_count.Caption, 3)) Then
-            btn_next.Caption = "下一条"
+            btn_next.Caption = "下一个"
         End If
         sql = "SELECT * FROM " & table_name & " WHERE index = " & page.Text
         db_record = db_conn.Execute(sql)
@@ -492,6 +511,7 @@ Private Sub Form_Load()
         moral_score.Text = db_record("moral_score").Value
         change_value.Text = "0"
         btn_previous.Enabled = False
+        strName.Enabled = False
     Else
         page.Text = "0"
         id.Enabled = False
@@ -523,6 +543,9 @@ End Sub
 
 Private Sub moral_score_Change()
     moral_score.Text = Val(moral_score.Text)
+    sql = "UPDATE " & table_name & " SET moral_score = " & moral_score.Text & _
+        " WHERE index = " & page.Text
+    db_conn.Execute sql
     If Val(moral_score.Text) < 60 Then
         grade.Caption = "不及格"
     ElseIf Val(moral_score.Text) >= 60 And _
@@ -575,6 +598,22 @@ Private Sub page_KeyPress(KeyAscii As Integer)
         strName.Text = Trim(db_record("name").Value)
         moral_score.Text = db_record("moral_score").Value
         change_value.Text = "0"
+        If Val(page.Text) = Val(Mid(for_count.Caption, 3)) And _
+            Val(page.Text) > 1 Then
+            btn_next.Caption = "添加"
+            btn_previous.Enabled = True
+        ElseIf Val(page.Text) = Val(Mid(for_count.Caption, 3)) And _
+            Val(page.Text) = 1 Then
+            btn_next.Caption = "添加"
+            btn_previous.Enabled = False
+        ElseIf Val(page.Text) < Val(Mid(for_count.Caption, 3)) And _
+            Val(page.Text) = 1 Then
+            btn_next.Caption = "下一个"
+            btn_previous.Enabled = False
+        Else
+            btn_next.Caption = "下一个"
+            btn_previous.Enabled = True
+        End If
     End If
 End Sub
 

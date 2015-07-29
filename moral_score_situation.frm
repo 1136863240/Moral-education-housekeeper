@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form moral_score_situation 
    BorderStyle     =   1  'Fixed Single
-   Caption         =   "德育管家v0.3 - 德育分情况"
+   Caption         =   "德育管家v0.4 - 德育分情况"
    ClientHeight    =   4635
    ClientLeft      =   45
    ClientTop       =   435
@@ -163,9 +163,9 @@ End Sub
 
 Private Sub Form_Load()
     Set connect = New ADODB.Connection
-    db_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
+    db_single_drive = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & Chr(34) & _
         db_name & table_name & "德育分细则\" & student_table & ".mdb" & Chr(34)
-    connect.Open db_drive
+    connect.Open db_single_drive
     
     Dim count
     sql = "SELECT COUNT(date_index) AS date_count FROM " & student_table
